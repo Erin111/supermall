@@ -32,7 +32,7 @@ export default {
             probeType: this.probeType,
             pullUpLoad: this.pullUpLoad
         })
-
+        // console.log(this.scroll)
 
 
         // 2.监听滚动的位置
@@ -42,16 +42,17 @@ export default {
         })
 
         // 3.监听上拉事件
-        this.scroll.on('pullingUp', () => {
-            this.$emit('pullingUp')
-        })
+        if (this.pullUpLoad) {
+            this.scroll.on('pullingUp', () => {
+                this.$emit('pullingUp')
+            })
+        }
     },
     methods: {
 
         refresh() {
             //判断scroll有值的时候才进行调取其中的方法
             this.scroll && this.scroll.refresh();
-            console.log('1111')
         },
         scrollTo(x, y, time = 500) {
             //更改滚动模块的位置，即滚动到x,y的位置，并可以设置完成这段滚动所需的时间
@@ -59,6 +60,9 @@ export default {
         },
         finishPullUp() {
             this.scroll && this.scroll.finishPullUp()
+        },
+        getScrollY(){
+            return this.scroll ? this.scroll.y : 0;
         }
     }
 }
