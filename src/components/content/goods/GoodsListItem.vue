@@ -22,14 +22,18 @@ export default {
         }
     },
     computed:{
-      //  详情页和home里面展示商品信息的方式是一样的
+      //  详情页和home和category里面展示商品信息的方式是一样的
       //  所以可以用同一个组件来战士，但是在获取image src时两个数据的方式有所不同
       showImage(){
 
-          return this.goodsItem.image || this.goodsItem.show.img
+              return this.goodsItem.img || this.goodsItem.image || this.goodsItem.show.img
 
       }
     },
+    mounted() {
+
+    },
+
     methods: {
         imgLoad() {
             this.$bus.$emit('itemImageLoad');
